@@ -167,7 +167,6 @@ public class IndexController {
 	@ResponseBody
 	@RequestMapping("updateHits")
 	public boolean updateHits(Integer id) {
-		//文章点击量修改
 		return articleService.updateHits(id)>0;
 	}
 }
