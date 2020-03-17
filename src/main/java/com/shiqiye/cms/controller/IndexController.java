@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -95,10 +96,12 @@ public class IndexController {
 		PageInfo<Article> info2 = commentService.selectsByCommentNum(1, 10);
 		//查询该文章是否被收藏过
 		User user = (User) session.getAttribute("user");
+		
 		Collect collect=null;
 		if(null!=user) {//如果用户已经登录,则查询用户是否已经被收藏过
 			collect=collectMapper.selectByTitleAndUserId(article.getTitle(), user.getId());
 		}
+		
 		m.addAttribute("collect", collect);
 		m.addAttribute("info", info);
 		m.addAttribute("info2", info2);
@@ -159,5 +162,12 @@ public class IndexController {
 	@RequestMapping("deleteCollect")
 	public boolean deleteCollect(Integer id) {
 		return collectMapper.delete(id)>0;
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateHits")
+	public boolean updateHits(Integer id) {
+		//文章点击量修改
+		return articleService.updateHits(id)>0;
 	}
 }

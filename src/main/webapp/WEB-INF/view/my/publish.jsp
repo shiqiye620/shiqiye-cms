@@ -54,6 +54,10 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 			  <option>请选择</option>
 			</select>
 		</div>
+		<div class="form-group form-inline">
+			关键词:<input type="text" name="keywords">
+			文章来源:<input type="text" name="origin">
+		</div>
 		
 		<div class="form-group">
 			文章标题图片:<input type="file" name="file">

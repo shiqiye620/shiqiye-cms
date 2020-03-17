@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<c:if test="${article.keywords!=null}">
+	<meta name="${article.keywords }" content="${article.origin}">
+</c:if>
 <title>${article.title}</title>
 <link rel="stylesheet" type="text/css" href="/resource/bootstrap.css" />
 <script type="text/javascript" src="/resource/jquery-3.2.1.js"></script>
@@ -31,6 +34,9 @@
 				<h2>${article.title}</h2>
 				<p>${article.user.username}&nbsp;&nbsp;<fmt:formatDate
 						value="${article.created}" pattern="yyyy-MM-dd HH:mm:ss" />
+				<c:if test="${article.origin!=null}">
+					&nbsp;文章来源:${article.origin}
+				</c:if>
 				</p>
 				<c:if test="${collect!=null}">
 				 <button type="button" onclick="deleteCollect()" class="btn btn-link">★&nbsp;  取消收藏</button>
@@ -38,6 +44,7 @@
 				<c:if test="${collect==null}">
 				     <button type="button" onclick="collect()" class="btn btn-link">☆ &nbsp;  未收藏</button>
 				</c:if>
+				
 				<hr>
 				${article.content}
 
@@ -118,6 +125,13 @@
 				}
 			},"json")
 		}
+	
+		$(function(){
+			var id=${article.id};
+			$.post("/updateHits",{id:id},function(){
+				
+			},"json")
+		})
 	</script>
 </body>
 </html>

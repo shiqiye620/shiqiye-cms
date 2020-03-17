@@ -10,8 +10,8 @@
   	</select>
   	<!-- 文章内容增加 -->
   	<insert id="insert">
-  		insert into cms_article(title,content,picture,channel_id,category_id,user_id,hits,hot,status,deleted,created,updated,summary)
-		values(#{title},#{content},#{picture},#{channelId},#{categoryId},#{userId},#{hits},#{hot},#{status},#{deleted},#{created},#{updated},#{summary})
+  		insert into cms_article(title,content,picture,channel_id,category_id,user_id,hits,hot,status,deleted,created,updated,summary,keywords,origin)
+		values(#{title},#{content},#{picture},#{channelId},#{categoryId},#{userId},#{hits},#{hot},#{status},#{deleted},#{created},#{updated},#{summary},#{keywords},#{origin})
   	</insert>
   	
   	<resultMap type="Article" id="articleResultMap">
@@ -31,6 +31,8 @@
   <result column="created" property="created"/> 
   <result column="updated" property="updated"/> 
   <result column="summary" property="summary"/> 
+  <result column="keywords" property="keywords"/> 
+  <result column="origin" property="origin"/> 
   <!-- 封装一对一关系 -->
     <!-- 用户 -->
    <association property="user" javaType="User">
@@ -96,5 +98,10 @@
   			</if>
   		</trim>
   		 
+  	</update>
+  	
+  	<!-- 修改文章点击量 -->
+  	<update id="updateHits">
+  		update cms_article set hits=hits+1 where id=#{id}
   	</update>
   </mapper>

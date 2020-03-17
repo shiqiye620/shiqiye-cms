@@ -38,7 +38,20 @@ public class Article implements Serializable{
 	private Integer deleted;//删除状态0:正常1:表示删除
 	private Date created;//文章发布时间
 	private Date updated;//文章修改时间
-	
+	private String keywords;
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+	public String getOrigin() {
+		return origin;
+	}
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+	private String origin;
 	private Channel channel;
 	private Category category;
 	private User user;

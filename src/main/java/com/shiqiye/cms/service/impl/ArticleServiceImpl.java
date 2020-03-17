@@ -41,5 +41,11 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleMapper.update(article);
 	}
 
+	@Override
+	public int updateHits(Integer id) {
+		// TODO Auto-generated method stub
+		return articleMapper.updateHits(id);
+	}
+
 	
 }

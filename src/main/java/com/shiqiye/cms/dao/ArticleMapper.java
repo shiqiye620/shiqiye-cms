@@ -43,4 +43,14 @@ public interface ArticleMapper {
 	 * @return: int
 	 */
 	int update(Article article);
+	
+	/**
+	 * 
+	 * @Title: updateHits 
+	 * @Description: 修改文章点击量
+	 * @param article
+	 * @return
+	 * @return: int
+	 */
+	int updateHits(Integer id);
 }
